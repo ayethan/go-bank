@@ -1,7 +1,17 @@
 package main
 
+import (
+	"fmt"
+	"log"
+)
+
 func main() {
-	server := NewAPIServer(":3000")
-	server.run()
-	// fmt.Println("Hello, World!")
+	store, err := NewPostgresStorage()
+	if err != nil {
+		log.Fatal("Failed to connect to the database:", err)
+	}
+	fmt.Printf("%+v\n", store)
+
+	// server := NewAPIServer(":3000", store)
+	// server.run()
 }
